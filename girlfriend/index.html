@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+		*{ 
+			margin:0 ;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			position: relative;
+		}
+			#c1{
+				border: 1px solid blue;
+				position: absolute;
+			}
+			#c2{
+				border: 1px solid ;
+				
+			}
+			
+			#d1{
+				margin: 0 auto;
+				width:500px ;
+			
+				
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			<canvas id="c1" width="600" height="800"></canvas>
+			<canvas id="c2" width="600" height="800"></canvas>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var c1 =document.querySelector('#c1');
+	var c2=document.querySelector('#c2');
+	//获取canvas上下文环境
+	var ctx1=c1.getContext("2d");
+	var ctx2=c2.getContext("2d");
+	//创建一个土偶对象
+	var imgs= new Image();
+	
+	imgs.src="img/12baec9cf7e741d4a3c4c8a4f8cedea.jpg";
+
+	
+	imgs.onload=function(){
+		
+		ctx2.drawImage(this,0,0,600,800);
+	}
+	
+	//绘制覆盖膜
+	ctx1.fillStyle="lightgray";
+	ctx1.fillRect(0,0,600,800);
+	//覆盖膜上设置文字
+	ctx1.font="normal 40px 魏体";
+	ctx1.strokeStyle="saddlebrown"
+	ctx1.strokeText("请刮开！！！",160,400);
+	
+	//监听鼠标点击事件。
+	c1.onmousedown=function(ev){
+		
+	//鼠标滑过的
+		c1.onmousemove=function(e){
+			//   console.log(e);
+			var w=50; //清楚区域的宽度
+			var h=50;  //清楚区域的高度
+			var x=e.pageX-c1.offsetLeft - w/2;   //清楚区域的x位置
+			var y=e.pageY-c1.offsetTop -  h/2; 		//清楚区域y的位置
+			ctx1.clearRect(x,y,w,h,);
+		}
+		}
+		
+		//鼠标松开的时候执行
+		c1.onmouseup=function(ev){
+			
+			
+			c1.onmousemove=null;
+		
+	}
+	
+	
+	
+	
+
+	
+	
+	
+</script>
